@@ -7,6 +7,7 @@ namespace DutchTreat.Controllers
         {
             return View();
         }
+        [HttpGet("contact")]
         public IActionResult Contact()
         {
             return View();
