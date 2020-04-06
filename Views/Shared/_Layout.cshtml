@@ -1,0 +1,23 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+<html>
+
+<head>
+    <title>Dutch Treat: @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/site.css">
+
+</head>
+<body>
+    <header>Welcome to Dutch Treat</header>
+    <section>
+        <h2>@ViewBag.Title</h2>
+        @RenderBody();  <!-- inserts the relevant view body html here-->
+    </section>
+    <footer>Copyright 2020 DK LLC</footer>
+</body>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/index.js"></script>
+
+</html>
