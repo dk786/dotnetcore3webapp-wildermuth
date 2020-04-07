@@ -1,31 +1,49 @@
 @{
-    ViewBag.Title = "Welcome to Dutch Treat";
+ViewBag.Title = "Welcome to Dutch Treat";
 }
 <html>
 
 <head>
     <title>Dutch Treat: @ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/site.css">
 
 </head>
-<body>
-    <header>Hello there.</header>
-    <menu>
-        <ul>
-            <li><a asp-controller="app" asp-action="index">Home</a></li>
-            <li><a asp-controller="app" asp-action="contact">Contact us</a></li>
-            <li><a asp-controller="app" asp-action="aboutus">About us</a></li>
-        </ul>
-    </menu>
 
-    <section>
+<body>
+    <header class="container">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+            <h1 class="navbar-brand">Welcome to the Dutch Treat site</h1>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#theMenu">
+                <span class="navbar-toggler-icon"></span>
+        
+        </button>
+            <div id="theMenu" class="navbar-collapse collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="app" asp-action="index">Home</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="app" asp-action="contact">Contact us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="app" asp-action="aboutus">About us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container">
         <h2>@ViewBag.Title</h2>
-        @RenderBody()<!-- inserts the relevant view body html here-->
+        @RenderBody()
+        <!-- inserts the relevant view body html here-->
     </section>
-    <footer>Copyright 2020 DK LLC</footer>
+    <div class="text-center">
+        <footer class="container">Copyright 2020 DK LLC</footer>
+    </div>
 </body>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/js/index.js"></script>
 @RenderSection("scripts", false)
 
