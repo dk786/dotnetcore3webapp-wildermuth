@@ -10,10 +10,10 @@ namespace DutchTreat.Services
             _logger = logger;
         }
 
-        public void SendMessage(string to, string subject, string body) 
+        public void SendMessage(string to, string email, string subject, string body) 
         { 
             // log the message
-            _logger.LogInformation($"to: {to} Subject: {subject} Body: {body}");
+            _logger.LogInformation($"To: {to} at email: {email} with Subject: {subject} and message: {body}");
         }
     }
 }
