@@ -2,7 +2,7 @@ $(document).ready(function () {
     var x = 0;
     var s = "";
 
-    console.log("Hello plurasight from index.js");
+    console.log("Hello from index.js. The document is now ready");
 
     // var theForm = document.getElementById("theForm");
     var theForm = $("#theForm");

@@ -1,0 +1,5 @@
+postgres
+Shaku786!
+
+port: 5432
+local: English UK

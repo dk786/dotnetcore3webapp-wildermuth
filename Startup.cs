@@ -21,7 +21,7 @@ namespace DutchTreat
             services.AddTransient<IMailService, NullMailService>();
             services.AddControllersWithViews();
             services.AddRazorPages();  // needed this for razor pages redirection to work, not part of the course, possible as using newer version of dotnetcore (3.1)
-
+            // services.AddDbContext
 
         }
 
