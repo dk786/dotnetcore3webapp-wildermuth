@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using DutchTreat.Data;
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -25,7 +24,12 @@ namespace DutchTreat
 
         private static void SeedDb(IWebHost host)
         {
-            throw new NotImplementedException();
+            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
+                seeder.Seed();
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

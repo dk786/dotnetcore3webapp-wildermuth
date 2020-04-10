@@ -3,7 +3,12 @@
    "Favorite" : "Blue"
  } ,
   "ConnectionStrings": {
-    "DutchConnectionString": "Host=localhost;Database=DutchTreatDb;Username=DutchTestUser;Password=DutchTestUser"
-    
+    "DutchConnectionString": "Host=localhost;Database=DutchTreatDb;Username=DutchTestUser;Password=DutchTestUser"    
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning"
+    }
   }
 }
