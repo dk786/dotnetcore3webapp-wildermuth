@@ -1,0 +1,9 @@
+{
+ "Colors": {
+   "Favorite" : "Blue"
+ } ,
+  "ConnectionStrings": {
+    "DutchConnectionString": "Host=localhost;Database=DutchTreatDb;Username=DutchTestUser;Password=DutchTestUser"
+    
+  }
+}

@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using DutchTreat.Data;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace DutchTreat
 {
@@ -13,14 +18,36 @@ namespace DutchTreat
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = BuildWebHost(args);
+            SeedDb(host);
+            host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        private static void SeedDb(IWebHost host)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                // .ConfigureAppConfiguration(SetupConfiguration)
+                .ConfigureAppConfiguration(SetupConfiguration)
+                .UseStartup<Startup>()
+                .Build();
+               
+  
+
+        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        {
+            // Remove the default configuration options
+            builder.Sources.Clear();
+            
+            // configuration can be read from these sources, the list is hierarchical with last taking precedent
+            builder.AddJsonFile("config.json", false, true)
+                // not going to use xml so commenting out for now.
+                // .AddXmlFile("config.xml", true)
+                
+                .AddEnvironmentVariables();
+        }
     }
 }
