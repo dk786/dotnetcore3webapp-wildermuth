@@ -18,6 +18,7 @@ namespace DutchTreat.Data {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Order>()
                 .HasData(new Order()
                 {
@@ -26,6 +27,7 @@ namespace DutchTreat.Data {
                     OrderNumber = "12345"
 
                 });
+            
         }
     }
 }
