@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DutchTreat.Data.Entities;
@@ -33,7 +34,17 @@ namespace DutchTreat.Data
 
         public bool SaveAll()
         {
-            return _context.SaveChanges() > 0;
+            try
+            {
+                var response = _context.SaveChanges();
+                _logger.LogInformation($"The response was {response}");
+                return response > 0;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Something went wrong with the save: {e}");
+                return false;
+            }
         }
 
         public IEnumerable<Order> GetAllOrders()
@@ -43,6 +54,11 @@ namespace DutchTreat.Data
                 .ThenInclude(i => i.Product)
                 .OrderBy(o => o.Id)
                 .ToList();
+        }
+
+        public void AddEntity(Object model)
+        {
+            _context.Add(model);
         }
     }
 }

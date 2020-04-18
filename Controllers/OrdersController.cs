@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using DutchTreat.Data;
 using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +25,7 @@ namespace DutchTreat.Controllers
         {
             try
             {
+                _logger.LogInformation("Entered the orders get method");
                 return Ok(_repository.GetAllOrders());   
             }
             catch (Exception e)
@@ -36,10 +36,26 @@ namespace DutchTreat.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Post(Order model)
+        public IActionResult Post([FromBody] Order model)
         {
-            return ViewBag("Testing post");
+            _logger.LogInformation("In the post method");
+            // add it to the database
+            try
+            {
+                _repository.AddEntity(model);
+                if (_repository.SaveAll())
+                {
+                    return Created($"/api/orders/{model.Id}", model);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"The post failed with error {e}");
+                return Problem($"Got an error writing to db {e}");
+            }
+
+                return BadRequest("Failed to save new order");
         }
+        
     }
 }
